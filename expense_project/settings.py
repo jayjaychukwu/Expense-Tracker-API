@@ -30,8 +30,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # 3rd party apps
     "rest_framework",
+    "drf_yasg",
     # Local
     "authentication",
+    "expenses",
 ]
 
 MIDDLEWARE = [
