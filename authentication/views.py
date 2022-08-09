@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from rest_framework import generics, status, views
+from authentication.renderers import UserRenderer
 from .serializers import (
     EmailVerificationSerializer,
     RegisterSerializer,
     LoginSerializer,
+    ResetPasswordEmailRequestSerializer,
 )
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -20,6 +22,7 @@ from drf_yasg import openapi
 class RegisterView(generics.GenericAPIView):
 
     serializer_class = RegisterSerializer
+    renderer_classes = (UserRenderer,)
 
     def post(self, request):
         user = request.data
@@ -92,3 +95,17 @@ class LoginAPIView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class RequestPasswordResetEmail(generics.GenericAPIView):
+    serializer_class = ResetPasswordEmailRequestSerializer
+
+    def post(self, request):
+        data = {"request": request, "data": request.data}
+        serializer = self.serializer_class(data=data)
+        serializer.is_valid(raise_exception=True)
+
+
+class PasswordTokenCheckAPI(generics.GenericAPIView):
+    def get(self, request, uid64, token):
+        pass
