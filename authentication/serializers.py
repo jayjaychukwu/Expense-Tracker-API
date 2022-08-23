@@ -67,7 +67,6 @@ class LoginSerializer(serializers.ModelSerializer):
             raise AuthenticationFailed("Email is not verified")
 
         return {"email": user.email, "username": user.username, "tokens": user.tokens()}
-        return super().validate(attrs)
 
 
 class ResetPasswordEmailRequestSerializer(serializers.Serializer):
