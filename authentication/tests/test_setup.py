@@ -1,6 +1,6 @@
-from rest_framework.test import APITestCase
 from django.urls import reverse
 from faker import Faker
+from rest_framework.test import APITestCase
 
 
 class TestSetUp(APITestCase):

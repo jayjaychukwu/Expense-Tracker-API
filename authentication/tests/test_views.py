@@ -1,5 +1,6 @@
-from .test_setup import TestSetUp
 from authentication.models import User
+
+from .test_setup import TestSetUp
 
 
 class TestViews(TestSetUp):
