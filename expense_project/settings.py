@@ -13,9 +13,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-as0sbl5y6+3kmjlzl!d5fsv9g5%=d(#qagffiw#@2i-_afd7a2"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+]
 
 
 AUTH_USER_MODEL = "authentication.User"
@@ -89,6 +92,7 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
     "NON_FIELD_ERRORS_KEY": "error",
     "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",),
+    "EXCEPTION_HANDLER": "utils.exceptionhandler.custom_exception_handler",
 }
 
 # Password validation
